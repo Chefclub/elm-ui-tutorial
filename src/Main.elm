@@ -9,6 +9,10 @@ import Element.Input as Input
 import Html exposing (Html)
 
 
+type alias Message =
+    { author : String, time : String, text : String }
+
+
 channelPanel : List String -> String -> Element msg
 channelPanel channels activeChannel =
     let
@@ -40,8 +44,8 @@ channelPanel channels activeChannel =
         List.map channelEl channels
 
 
-chatPanel : String -> Element msg
-chatPanel channel =
+chatPanel : String -> List Message -> Element msg
+chatPanel channel messages =
     let
         header =
             row
@@ -63,8 +67,16 @@ chatPanel channel =
                     }
                 ]
 
+        messageEntry message =
+            column [ width fill, spacingXY 0 5 ]
+                [ row [ spacingXY 10 0 ]
+                    [ el [ Font.bold ] <| text message.author, text message.time ]
+                , paragraph [] [ text message.text ]
+                ]
+
         messagePanel =
-            column [] []
+            column [ padding 10, spacingXY 0 20, scrollbarY ] <|
+                List.map messageEntry messages
 
         footer =
             el [ alignBottom, padding 20, width fill ] <|
@@ -97,10 +109,17 @@ main : Html msg
 main =
     let
         channel =
-            "random"
+            "tech"
+
+        messages =
+            [ { author = "Rémy", time = "12:57", text = "Je vais faire un test avec elm-ui 🕴" }
+            , { author = "Greg", time = "13:07", text = "N'y passe pas trop de temps on va attendre Janvier pour en discuter 🙊" }
+            , { author = "Yannick", time = "13:17", text = "Plus il y a de @elmlang mieux c'est de toute manière \u{1F929}" }
+            , { author = "Greg", time = "13:18", text = "Ça ne t'empêche pas de regarder elm-ui 🚎" }
+            ]
     in
     layout [] <|
         row [ height fill, width fill ]
-            [ channelPanel [ "general", "random", "manger", "noël" ] channel
-            , chatPanel channel
+            [ channelPanel [ "general", "tech", "manger", "noël" ] channel
+            , chatPanel channel messages
             ]
