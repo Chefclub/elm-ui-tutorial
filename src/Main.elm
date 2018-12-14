@@ -114,7 +114,7 @@ main =
         messages =
             [ { author = "Rémy", time = "12:57", text = "Je vais faire un test avec elm-ui 🕴" }
             , { author = "Greg", time = "13:07", text = "N'y passe pas trop de temps on va attendre Janvier pour en discuter 🙊" }
-            , { author = "Yannick", time = "13:17", text = "Plus il y a de @elmlang mieux c'est de toute manière \u{1F929}" }
+            , { author = "Yannick", time = "13:17", text = "Plus il y a de @elmlang mieux c'est de toute manière 😎" }
             , { author = "Greg", time = "13:18", text = "Ça ne t'empêche pas de regarder elm-ui 🚎" }
             ]
     in
