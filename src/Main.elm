@@ -116,9 +116,11 @@ main =
             , { author = "Greg", time = "13:07", text = "N'y passe pas trop de temps on va attendre Janvier pour en discuter 🙊" }
             , { author = "Yannick", time = "13:17", text = "Plus il y a de @elmlang mieux c'est de toute manière 😎" }
             , { author = "Greg", time = "13:18", text = "Ça ne t'empêche pas de regarder elm-ui 🚎" }
+            , { author = "Rémy", time = "13:19", text = "Mon objectif c'est d'avoir quelques mockup pour valider que ce que j'ai compris fonctionne " }
+            , { author = "Rémy", time = "13:19", text = "Je suis un codeur pas un designer du coup je sais pas faire des mockups sans coder 😢" }
             ]
     in
-    layout [] <|
+    layout [ height fill ] <|
         row [ height fill, width fill ]
             [ channelPanel [ "general", "tech", "manger", "noël" ] channel
             , chatPanel channel messages
