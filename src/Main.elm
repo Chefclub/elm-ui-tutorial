@@ -9,15 +9,35 @@ import Element.Input as Input
 import Html exposing (Html)
 
 
-channelPanel : Element msg
-channelPanel =
+channelPanel : List String -> String -> Element msg
+channelPanel channels activeChannel =
+    let
+        activeChannelAttrs =
+            [ Background.color <| rgb255 117 179 201, Font.bold ]
+
+        channelAttrs =
+            [ paddingXY 15 5, width fill ]
+
+        channelEl channel =
+            el
+                (if channel == activeChannel then
+                    activeChannelAttrs ++ channelAttrs
+
+                 else
+                    channelAttrs
+                )
+            <|
+                text ("# " ++ channel)
+    in
     column
         [ height fill
         , width <| fillPortion 1
+        , paddingXY 0 10
         , Background.color <| rgb255 92 99 118
         , Font.color <| rgb255 255 255 255
         ]
-        [ text "channels" ]
+    <|
+        List.map channelEl channels
 
 
 chatPanel : Element msg
@@ -30,6 +50,6 @@ main : Html msg
 main =
     layout [] <|
         row [ height fill, width fill ]
-            [ channelPanel
+            [ channelPanel [ "general", "random", "manger", "noël" ] "random"
             , chatPanel
             ]
